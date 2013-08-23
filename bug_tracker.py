@@ -1,3 +1,4 @@
+bug_ids = []
 class Project(object):
     members = []
     def __init__(self, name, description):
@@ -16,10 +17,9 @@ class Member(object):
         self.email = email
 
 class Bug(object):
-    bug_ids = []
     comments = []
     def __init__(self, id, description, status="new", comment=""):
-        if id in self.bug_ids:
+        if id in bug_ids:
             raise DuplicateIdException(id)
         else:
             self.id = id
