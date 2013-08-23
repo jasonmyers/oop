@@ -19,16 +19,27 @@ class Bug(object):
     bug_ids = []
     comments = []
     def __init__(self, id, description, status="new", comment=""):
-        self.id = id
-        self.description = description
-        self.status = status
-        if comment != "":
-            self.comments.append(comment)
-        self.bug_ids.append(self.id)
+        if id in self.bug_ids:
+            raise DuplicateIdException(id)
+        else:
+            self.id = id
+            self.description = description
+            self.status = status
+            if comment != "":
+                self.comments.append(comment)
+                self.bug_ids.append(self.id)
 
     def set_status(self, status):
         self.status = status
 
     def add_comment(self, comment):
-        pass
+        self.comments.append(comment)
+
+class DuplicateIdException(Exception):
+    def __init__(self, value):
+        self.value = value
+
+    def __str__(self):
+        return repr(self.value)
+
 
