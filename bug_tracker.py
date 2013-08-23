@@ -1,18 +1,19 @@
 class Project(object):
-
+    members = []
     def __init__(self, name, description):
-        pass
+        self.name = name
+        self.description = description
 
     def add_member(self, member):
-        pass
+        self.members.append((member.name, member.email))
 
     def get_members(self):
-        return ["Joe"]
+        return self.members
 
 class Member(object):
-
     def __init__(self, name, email):
-        pass
+        self.name = name
+        self.email = email
 
 class Bug(object):
     bug_ids = []
